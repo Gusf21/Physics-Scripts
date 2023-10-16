@@ -20,6 +20,19 @@ def fullParabola():
     print("Generating Parabola Info...")
     #time.sleep(1)
     print(f"\nHorizontal Velocity: {horizontalVelocity}m s-1\nHorizontal Displacment: {2 * horizontalDisplacement}m\nVertical Displacment: {verticalDisplacement}m\nVertical Initial Velocity: {verticalInitialVelocity}m s-1\nFull Parabola Time: {time * 2}s\nHalf Parabola Time: {time}s")
+    contAnalyse = True
+    while (contAnalyse):
+        analyse: str = input("\nDo you want you want to analyse this parabola? (y,n)")
+        if analyse == "y":
+            sQuery: float = float(input("\nWhat do you value of horizontal displacement do you want to analyse for?"))
+            # if s is bigger than midpoint, find difference and minus from midpoint
+            formmattedSQuery = horizontalDisplacement - (sQuery - horizontalDisplacement) if sQuery > horizontalDisplacement else sQuery
+            # t = S_x / V_x
+            tAtQuery: float = formmattedSQuery / horizontalVelocity
+            tAtQuery = (2 * time) - tAtQuery if sQuery > horizontalDisplacement else tAtQuery
+            print(f"\nThe parabola at {sQuery}m of horizontal displacment has a time value of {tAtQuery}s")
+        else:
+            contAnalyse = False
 
 
 def halfParabola():
