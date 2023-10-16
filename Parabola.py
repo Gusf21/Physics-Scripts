@@ -36,10 +36,17 @@ def fullParabola():
 
 
 def halfParabola():
-    horizontalDisplacement: float = float(input("\nInput Horizontal Displacment"))
-    horizontalVelocity: float = float(input("Input Horizontal Velocity"))
+    print("If you have a variable input it, otherwise input nothing, you must have at least two variables")
+    horizontalDisplacement: str = input("\nInput Horizontal Displacment")
+    horizontalVelocity: str = input("Input Horizontal Velocity")
+    time: str = input("Input time")
 
-    time: float = horizontalDisplacement / horizontalVelocity
+    # t = s / v
+    time: float = horizontalDisplacement / horizontalVelocity if time == "" else float(time)
+    #  s = vt
+    horizontalDisplacement: float = time * horizontalVelocity if horizontalDisplacement == "" else float(horizontalDisplacement)
+    # v = s / t
+    horizontalVelocity: float = horizontalDisplacement / time if horizontalVelocity == "" else float(horizontalVelocity)
     verticalVelocity: float = g * time
     verticalDisplacement: float = (g * (time * time)) / 2
 
@@ -49,11 +56,11 @@ def halfParabola():
     #time.sleep(1)
     print("Generating Parabola Info...")
     #time.sleep(1)
-    print(f"\nVertical Final Velocity: {verticalVelocity}m s-1\nVertical Displacment: {abs(verticalDisplacement)}m\nTime: {time}s\n")
+    print(f"\nVertical Final Velocity: {verticalVelocity}m s-1\nVertical Displacement: {abs(verticalDisplacement)}m\nHorizontal Velocity: {horizontalVelocity}m s-1\nHorizontal Displacement: {horizontalDisplacement}m\nTime: {time}s\n")
 
 
 while True:
-    mode: str = input("Half Parabola, Full Parabola (h, f)")
+    mode: str = input("Half Parabola or Full Parabola (h, f)")
 
     if mode == "f":
         fullParabola()
