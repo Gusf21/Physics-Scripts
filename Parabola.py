@@ -3,9 +3,25 @@ import time
 
 g: float = -9.81
 
+def checkFloat(question: str):
+    answer = input(question)
+    while not answer.isnumeric():
+        print("Invalid Input, please enter a number")
+        answer = input(question)
+        return float(answer)
+
+
+def checkValid(question: str, validAnswers: list(str)):
+    answer = input(question)
+    while not answer.lower().strip() in validAnswers:
+        print("Invalid Input!")
+        answer = input(question)
+        return answer
+
+
 def fullParabola():
-    launchVelocity: float = float(input("\nInput Launch Velocity"))
-    launchAngle: float = float(input("Input Launch Angle"))
+    launchVelocity: float = checkFloat("\nInput Launch Velocity")
+    launchAngle: float = checkFloat("Input Launch Angle")
 
     horizontalVelocity: float = math.cos(launchAngle * (math.pi / 180)) * launchVelocity
     verticalInitialVelocity: float = math.sin(launchAngle * (math.pi / 180)) * launchVelocity
@@ -22,9 +38,9 @@ def fullParabola():
     print(f"\nHorizontal Velocity: {horizontalVelocity}m s-1\nHorizontal Displacment: {2 * horizontalDisplacement}m\nVertical Displacment: {verticalDisplacement}m\nVertical Initial Velocity: {verticalInitialVelocity}m s-1\nFull Parabola Time: {time * 2}s\nHalf Parabola Time: {time}s")
     contAnalyse = True
     while (contAnalyse):
-        analyse: str = input("\nDo you want you want to analyse this parabola? (y,n)")
+        analyse: str = checkValid("\nDo you want you want to analyse this parabola? (y,n)", ["y", "n"])
         if analyse == "y":
-            sQuery: float = float(input("\nWhat do you value of horizontal displacement do you want to analyse for?"))
+            sQuery: float = checkFloat("\nWhat do you value of horizontal displacement do you want to analyse for?")
             # if s is bigger than midpoint, find difference and minus from midpoint
             formmattedSQuery = horizontalDisplacement - (sQuery - horizontalDisplacement) if sQuery > horizontalDisplacement else sQuery
             # t = S_x / V_x
@@ -60,7 +76,7 @@ def halfParabola():
 
 
 while True:
-    mode: str = input("Half Parabola or Full Parabola (h, f)")
+    mode: str = checkValid("Half Parabola or Full Parabola (h, f)", ["h", "f"])
 
     if mode == "f":
         fullParabola()
