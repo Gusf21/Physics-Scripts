@@ -53,9 +53,20 @@ def fullParabola():
 
 def halfParabola():
     print("If you have a variable input it, otherwise input nothing, you must have at least two variables")
-    horizontalDisplacement: str = input("\nInput Horizontal Displacment")
-    horizontalVelocity: str = input("Input Horizontal Velocity")
-    time: str = input("Input time")
+    horizontalDisplacement = input("\nInput Horizontal Displacment")
+    horizontalVelocity = input("Input Horizontal Velocity")
+    time = input("Input time")
+
+    if time == "":
+        horizontalDisplacement = float(horizontalDisplacement)
+        horizontalVelocity = float(horizontalVelocity)
+    elif horizontalDisplacement == "":
+        time = float(time)
+        horizontalVelocity = float(horizontalVelocity)
+    elif horizontalVelocity == "":
+        horizontalDisplacement = float(horizontalDisplacement)
+        time = float(time)
+
 
     # t = s / v
     time: float = horizontalDisplacement / horizontalVelocity if time == "" else float(time)
