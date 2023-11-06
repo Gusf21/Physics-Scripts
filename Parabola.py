@@ -1,5 +1,4 @@
 import math
-import time
 
 g: float = -9.81
 
@@ -8,15 +7,15 @@ def checkFloat(question: str):
     while not answer.isnumeric():
         print("Invalid Input, please enter a number")
         answer = input(question)
-        return float(answer)
+    return float(answer)
 
 
-def checkValid(question: str, validAnswers: list(str)):
+def checkValid(question: str, validAnswers):
     answer = input(question)
     while not answer.lower().strip() in validAnswers:
         print("Invalid Input!")
         answer = input(question)
-        return answer
+    return answer
 
 
 def fullParabola():
@@ -24,7 +23,7 @@ def fullParabola():
     launchAngle: float = checkFloat("Input Launch Angle")
 
     horizontalVelocity: float = math.cos(launchAngle * (math.pi / 180)) * launchVelocity
-    verticalInitialVelocity: float = math.sin(launchAngle * (math.pi / 180)) * launchVelocity
+    verticalInitialVelocity: float = math.sin(launchAngle * float((math.pi / 180))) * launchVelocity
     time: float = abs((0 - verticalInitialVelocity) / g)
     horizontalDisplacement: float = abs(time * horizontalVelocity)
     verticalDisplacement: float = abs((verticalInitialVelocity * time) + ((g * (time * time)) / 2))
@@ -53,9 +52,20 @@ def fullParabola():
 
 def halfParabola():
     print("If you have a variable input it, otherwise input nothing, you must have at least two variables")
-    horizontalDisplacement: str = input("\nInput Horizontal Displacment")
-    horizontalVelocity: str = input("Input Horizontal Velocity")
-    time: str = input("Input time")
+    horizontalDisplacement = input("\nInput Horizontal Displacment")
+    horizontalVelocity = input("Input Horizontal Velocity")
+    time = input("Input time")
+
+    if time == "":
+        horizontalDisplacement = float(horizontalDisplacement)
+        horizontalVelocity = float(horizontalVelocity)
+    elif horizontalDisplacement == "":
+        time = float(time)
+        horizontalVelocity = float(horizontalVelocity)
+    elif horizontalVelocity == "":
+        horizontalDisplacement = float(horizontalDisplacement)
+        time = float(time)
+
 
     # t = s / v
     time: float = horizontalDisplacement / horizontalVelocity if time == "" else float(time)
