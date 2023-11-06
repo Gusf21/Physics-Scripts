@@ -1,5 +1,4 @@
 import math
-import time
 
 g: float = -9.81
 
