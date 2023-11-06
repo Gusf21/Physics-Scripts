@@ -8,15 +8,15 @@ def checkFloat(question: str):
     while not answer.isnumeric():
         print("Invalid Input, please enter a number")
         answer = input(question)
-        return float(answer)
+    return float(answer)
 
 
-def checkValid(question: str, validAnswers: list(str)):
+def checkValid(question: str, validAnswers):
     answer = input(question)
     while not answer.lower().strip() in validAnswers:
         print("Invalid Input!")
         answer = input(question)
-        return answer
+    return answer
 
 
 def fullParabola():
@@ -24,7 +24,7 @@ def fullParabola():
     launchAngle: float = checkFloat("Input Launch Angle")
 
     horizontalVelocity: float = math.cos(launchAngle * (math.pi / 180)) * launchVelocity
-    verticalInitialVelocity: float = math.sin(launchAngle * (math.pi / 180)) * launchVelocity
+    verticalInitialVelocity: float = math.sin(launchAngle * float((math.pi / 180))) * launchVelocity
     time: float = abs((0 - verticalInitialVelocity) / g)
     horizontalDisplacement: float = abs(time * horizontalVelocity)
     verticalDisplacement: float = abs((verticalInitialVelocity * time) + ((g * (time * time)) / 2))
